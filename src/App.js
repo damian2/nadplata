@@ -1,50 +1,35 @@
+// App.js
 import React, { useState } from "react";
 import InstallmentTable from "./InstallmentTable";
+import MortgageForm from "./MortgageForm";
+import ShortenedPeriod from "./ShortenedPeriod";
 import { calculateMortgage } from "./mortgageCalculator";
+import { Container, Typography, Box } from "@mui/material";
 
 const App = () => {
-  const [installments, setInstallments] = useState([]);
-  const [inputs, setInputs] = useState({
-    remainingInstallments: "",
-    remainingCapital: "",
-    interestRate: "",
-    extraPayment: "",
-  });
+    const [installments, setInstallments] = useState([]);
+    const [initialInstallments, setInitialInstallments] = useState(0);
 
-  const handleChange = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
+    const handleSubmit = (inputs) => {
+        const calculatedInstallments = calculateMortgage(inputs);
+        setInstallments(calculatedInstallments);
+        setInitialInstallments(inputs.remainingInstallments);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const calculatedInstallments = calculateMortgage(inputs);
-    setInstallments(calculatedInstallments);
-  };
+    const shortenedPeriod = initialInstallments - installments.length;
 
-  return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Liczba pozostałych rat:
-            <input name="remainingInstallments" type="number" value={inputs.remainingInstallments} onChange={handleChange} />
-          </label>
-          <label>
-            Pozostały kapitał do spłaty:
-            <input name="remainingCapital" type="number" value={inputs.remainingCapital} onChange={handleChange} />
-          </label>
-          <label>
-            Aktualne oprocentowanie (w %):
-            <input name="interestRate" type="number" value={inputs.interestRate} onChange={handleChange} />
-          </label>
-          <label>
-            Wysokość comiesięcznej nadpłaty:
-            <input name="extraPayment" type="number" value={inputs.extraPayment} onChange={handleChange} />
-          </label>
-          <button type="submit">Generuj tabelę</button>
-        </form>
-        {installments.length > 0 && <InstallmentTable installments={installments} />}
-      </div>
-  );
+    return (
+        <Container maxWidth="sm">
+            <Box mt={4}>
+                <Typography variant="h4" align="center" gutterBottom>
+                    Sprawdź o ile skróci się okres spłaty kredytu przy regularnych nadpłatach
+                </Typography>
+            </Box>
+            <MortgageForm onSubmit={handleSubmit} />
+            {installments.length > 0 && <ShortenedPeriod shortenedPeriod={shortenedPeriod} />}
+            {installments.length > 0 && <InstallmentTable installments={installments} />}
+        </Container>
+    );
 };
 
 export default App;
