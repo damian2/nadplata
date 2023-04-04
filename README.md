@@ -1,5 +1,11 @@
 ## Kod w całości wygenerowany z GPT4
 
+Link:
+https://gray-mud-067bf7903.2.azurestaticapps.net/
+
+<details>
+<summary>Cała konwersacja z czatem</summary>
+
 ![image](https://user-images.githubusercontent.com/9480848/229926185-67656346-74d9-4f67-9292-845fbdf2f6aa.png)
 ![image](https://user-images.githubusercontent.com/9480848/229926265-ba11687a-e10d-4068-b4bd-391a5e1f5e68.png)
 ![image](https://user-images.githubusercontent.com/9480848/229926340-3b10c222-7973-4c3c-a90b-f759b38a45ae.png)
@@ -25,3 +31,5 @@
 ![image](https://user-images.githubusercontent.com/9480848/229927401-f669d168-7a2d-4245-98b3-d35251e8ade7.png)
 ![image](https://user-images.githubusercontent.com/9480848/229927437-5ef211cc-66e2-4031-87ac-dd77a1914bef.png)
 ![image](https://user-images.githubusercontent.com/9480848/229927461-935391ad-f2b1-4456-bad8-548589fabf54.png)
+
+</details>
