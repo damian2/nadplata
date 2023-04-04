@@ -1,4 +1,4 @@
-## Kod w całości wygenerowany z GPT4
+## Kod w całości wygenerowany przez GPT4
 
 Link:
 https://gray-mud-067bf7903.2.azurestaticapps.net/
