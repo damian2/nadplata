@@ -1,5 +1,10 @@
 ## Kod w całości wygenerowany przez GPT4
 
+
+![image](https://user-images.githubusercontent.com/9480848/229994635-a2f8f70c-f0d5-4ed6-a35e-2f1e444dddd8.png)
+
+
+
 Link:
 https://gray-mud-067bf7903.2.azurestaticapps.net/
 
