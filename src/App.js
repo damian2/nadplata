@@ -26,7 +26,7 @@ const App = () => {
                 </Typography>
             </Box>
             <MortgageForm onSubmit={handleSubmit} />
-            {installments.length > 0 && <ShortenedPeriod shortenedPeriod={shortenedPeriod} />}
+            {installments.length > 0 && <ShortenedPeriod months={shortenedPeriod} />}
             {installments.length > 0 && <InstallmentTable installments={installments} />}
         </Container>
     );

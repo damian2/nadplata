@@ -1,26 +1,50 @@
 // MortgageForm.js
-import React, { useState } from "react";
-import { TextField, Button, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { TextField, Box, Typography } from "@mui/material";
+import YearsAndMonths from "./YearsAndMonths";
 
 const MortgageForm = ({ onSubmit }) => {
     const [inputs, setInputs] = useState({
         remainingInstallments: "",
         remainingCapital: "",
         interestRate: "",
-        extraPayment: "",
+        extraPayment: "0",
     });
 
-    const handleChange = (e) => {
-        setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const validateInput = (name, value) => {
+        if (value === "") {
+            return "";
+        }
+
+        switch (name) {
+            case "remainingInstallments":
+                return Math.min(Math.max(value, 0), 420);
+            case "remainingCapital":
+                return Math.min(Math.max(value, 0), 50000000);
+            case "interestRate":
+                return Math.min(Math.max(value, 0), 50);
+            case "extraPayment":
+                return Math.max(value, 0);
+            default:
+                return value;
+        }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(inputs);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        const validatedValue = validateInput(name, value);
+        setInputs({ ...inputs, [name]: validatedValue });
     };
+
+    useEffect(() => {
+        const isFormValid = Object.values(inputs).every((value) => value !== "");
+        if (isFormValid) {
+            onSubmit(inputs);
+        }
+    }, [inputs, onSubmit]);
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <Box display="flex" flexDirection="column">
                 <TextField
                     label="Liczba pozostałych rat"
@@ -30,6 +54,13 @@ const MortgageForm = ({ onSubmit }) => {
                     onChange={handleChange}
                     margin="normal"
                 />
+                <Typography>
+                    {inputs.remainingInstallments ? (
+                        <YearsAndMonths months={parseInt(inputs.remainingInstallments)} />
+                    ) : (
+                        ""
+                    )}
+                </Typography>
                 <TextField
                     label="Pozostały kapitał do spłaty"
                     name="remainingCapital"
@@ -54,9 +85,6 @@ const MortgageForm = ({ onSubmit }) => {
                     onChange={handleChange}
                     margin="normal"
                 />
-                <Button variant="contained" color="primary" type="submit">
-                    Generuj tabelę
-                </Button>
             </Box>
         </form>
     );

@@ -1,24 +1,25 @@
 // ShortenedPeriod.js
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import YearsAndMonths from "./YearsAndMonths";
 
-const ShortenedPeriod = ({ shortenedPeriod }) => {
-    const pluralizeMonths = (number) => {
-        if (number === 1) {
-            return "miesiąc";
-        } else if (number >= 2 && number <= 4) {
-            return "miesiące";
-        } else {
-            return "miesięcy";
-        }
-    };
+const ShortenedPeriod = ({ months }) => {
+    if (months < 0) {
+        return null;
+    }
 
-    const text = `Okres spłaty kredytu został skrócony o ${shortenedPeriod} ${pluralizeMonths(shortenedPeriod)}`;
+    let message;
+    if (months === 1) {
+        message = "Okres spłaty kredytu został skrócony o 1 miesiąc";
+    } else if (months > 1 && months < 5) {
+        message = `Okres spłaty kredytu został skrócony o ${months} miesiące`;
+    } else {
+        message = `Okres spłaty kredytu został skrócony o ${months} miesięcy`;
+    }
 
     return (
-        <Box mt={2}>
-            <Typography variant="h6">{text}</Typography>
-        </Box>
+        <div>
+            {message} ({<YearsAndMonths months={months} />})
+        </div>
     );
 };
 
