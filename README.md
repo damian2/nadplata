@@ -6,7 +6,7 @@
 
 
 Link:
-https://www.nadplata-kredytu.pl/
+[Nadpłata kredytu](https://www.nadplata-kredytu.pl/)
 
 <details>
 <summary>Cała konwersacja z czatem</summary>
