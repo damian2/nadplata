@@ -6,7 +6,7 @@
 
 
 Link:
-https://gray-mud-067bf7903.2.azurestaticapps.net/
+https://www.nadplata-kredytu.pl/
 
 <details>
 <summary>Cała konwersacja z czatem</summary>
