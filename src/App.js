@@ -9,10 +9,12 @@ import { Container, Typography, Box } from "@mui/material";
 const App = () => {
     const [installments, setInstallments] = useState([]);
     const [initialInstallments, setInitialInstallments] = useState(0);
+    const [savedInterest, setSavedInterest] = useState(0);
 
     const handleSubmit = (inputs) => {
-        const calculatedInstallments = calculateMortgage(inputs);
-        setInstallments(calculatedInstallments);
+        const { installments, interestSaved } = calculateMortgage(inputs);
+        setInstallments(installments);
+        setSavedInterest(interestSaved);
         setInitialInstallments(inputs.remainingInstallments);
     };
 
@@ -27,9 +29,27 @@ const App = () => {
             </Box>
             <MortgageForm onSubmit={handleSubmit} />
             {installments.length > 0 && <ShortenedPeriod months={shortenedPeriod} />}
+            {installments.length > 0 && (
+                <Typography variant="body1" style={{ marginTop: "1rem" }}>
+                    Zaoszczędzone odsetki: {savedInterest.toFixed(2)} zł
+                </Typography>
+            )}
             {installments.length > 0 && <InstallmentTable installments={installments} />}
+            <Box mt={4} textAlign="center">
+                <Typography variant="caption" display="block" gutterBottom>
+                    Strona w całości wygenerowana przez GPT4
+                </Typography>
+                <Typography variant="caption" display="block">
+                    <a href="https://github.com/damian2/nadplata" target="_blank" rel="noopener noreferrer">
+                        https://github.com/damian2/nadplata
+                    </a>
+                </Typography>
+            </Box>
         </Container>
     );
+
+
+
 };
 
 export default App;

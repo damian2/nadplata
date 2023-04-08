@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { TextField, Box, Typography } from "@mui/material";
 import YearsAndMonths from "./YearsAndMonths";
 
+
+
 const MortgageForm = ({ onSubmit }) => {
     const [inputs, setInputs] = useState({
         remainingInstallments: "",

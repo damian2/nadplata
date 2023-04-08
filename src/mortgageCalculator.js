@@ -7,8 +7,12 @@ export const calculateMortgage = (inputs) => {
 
     const installmentsList = [];
     let remaining = parseFloat(remainingCapital);
+    let totalInterestPaid = 0;
+    let totalInterestSaved = 0;
+
     for (let i = 0; i < remainingInstallments; i++) {
         const interestPayment = remaining * rate;
+        totalInterestPaid += interestPayment;
         const principalPayment = annuity - interestPayment;
         const payment = principalPayment + interestPayment;
 
@@ -22,9 +26,13 @@ export const calculateMortgage = (inputs) => {
 
         remaining -= (principalPayment + parseFloat(extraPayment));
         if (remaining <= 0) {
+            totalInterestSaved = totalInterestPaid - interestPayment;
             break;
         }
     }
 
-    return installmentsList;
+    return {
+        installments: installmentsList,
+        interestSaved: totalInterestSaved
+    };
 };
